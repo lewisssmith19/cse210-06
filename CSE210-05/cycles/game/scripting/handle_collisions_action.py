@@ -19,6 +19,7 @@ class HandleCollisionsAction(Action):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
         self._counter = 0
+        self._winner = ""
 
     def execute(self, cast, script):
         """Executes the handle collisions action.
@@ -48,13 +49,32 @@ class HandleCollisionsAction(Action):
 
         if head1.get_position().equals(coin.get_position()):
             points = coin.get_points()
-            score1.add_points(points)
-            coin.reset()
+            if not coin._lock:
+                score1.add_points(points)
+                coin.reset()
 
         if head2.get_position().equals(coin.get_position()):
             points = coin.get_points()
-            score2.add_points(points)
-            coin.reset()
+            if not coin._lock:
+                score2.add_points(points)
+                coin.reset()
+
+    def _score_comparision(self, cast):
+        player1 = cast.get_first_actor("score1")
+        player2 = cast.get_first_actor("score2")
+
+        score1 = player1.get_points()
+        score2 = player2.get_points()
+
+        if score1 > score2:
+            self._winner = player1._name
+            return "cycle1"
+        elif score2 > score1:
+            self._winner = player2._name
+            return "cycle2"
+        else:
+            self._winner = "It's a tie"
+            return ""
 
     def _handle_addition_segments(self, cast):
         """Updates the snake and adds 
@@ -112,25 +132,35 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        if self._is_game_over:
-            cycle1 = cast.get_first_actor("cycle1")
-            segments1 = cycle1.get_segments()
-            cycle2 = cast.get_first_actor("cycle2")
-            segments2 = cycle2.get_segments()
+
+        timer = cast.get_first_actor("timer")
+
+        if not timer._active:
+            coin = cast.get_first_actor("coin")
+            coin.lock()
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
-            position = Point(x, y)
+            position  = Point(x, y - constants.CELL_SIZE)
+            position2 = Point(x, y + constants.CELL_SIZE)
 
             message = Actor()
-            message.set_text("Game Over!")
+            message.set_text("Time Over!")
             message.set_position(position)
             cast.add_actor("messages", message)
 
-            for segment in segments1:
-                segment.set_color(constants.WHITE)
-            for segment in segments2:
-                segment.set_color(constants.WHITE)
+            winner = Actor()
+            winner_group = self._score_comparision(cast)
+            if winner_group == "":
+                winner.set_color(constants.YELLOW)
+                winner.set_text("It's a tie!")
+            else:
+                winner_actor = cast.get_first_actor(winner_group)
+                winner.set_color(winner_actor.get_color())
+                winner.set_text(f"{self._winner} Wins")
+            
+            winner.set_position(position2)
+            cast.add_actor("message2", winner)
 
     def _handle_rainbow_color(self, cast):
         

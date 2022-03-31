@@ -17,8 +17,8 @@ class Food(Actor):
         "Constructs a new Food."
         super().__init__()
         self._points = 0
-        self.set_text("&&")
-        self.set_color(constants.GREEN)
+        self.set_text(constants.COIN_SYMBOL)
+        self.set_color(constants.COIN_COLOR)
         self.reset()
         
     def reset(self):

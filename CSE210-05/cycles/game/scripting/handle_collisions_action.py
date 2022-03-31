@@ -136,7 +136,7 @@ class HandleCollisionsAction(Action):
         
         coin = cast.get_first_actor("coin")
         if coin.get_points() == 8:
-            coin.set_text("@")
+            coin.set_text(constants.SPECIAL_COIN_SYMBOL)
             coin.set_rainbow_color()
             if self._counter % 10 == 0:
                 coin.set_random_velocity()
@@ -146,6 +146,6 @@ class HandleCollisionsAction(Action):
             #print(self._counter)
             
         else:
-            coin.set_text("O")
+            coin.set_text(constants.COIN_SYMBOL)
             coin.reset_velocity()
-            coin.set_color(constants.YELLOW)
+            coin.set_color(constants.COIN_COLOR)

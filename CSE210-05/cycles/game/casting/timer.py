@@ -9,7 +9,7 @@ class Timer(Actor):
     Attributes:
         _points (int): The points earned in the game.
     """
-    def __init__(self, position, minutes=0, seconds=30):
+    def __init__(self, position, minutes=0, seconds=0):
         super().__init__()
         self._requested_minutes = minutes
         self._requested_seconds = seconds

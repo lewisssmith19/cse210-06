@@ -16,3 +16,5 @@ YELLOW = Color(255, 255, 0)
 GREEN = Color(0, 255, 0)
 BLUE = Color(9, 61, 251)
 RAINBOW_R = 51
+COIN_SYMBOL = "$"
+SPECIAL_COIN_SYMBOL = "@"

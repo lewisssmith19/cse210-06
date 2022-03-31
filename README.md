@@ -1,13 +1,16 @@
-
+# Coin Race
 
 ## Rules
-Cycle is played according to the following rules.
+Coin race is played according to the following rules.
 
 Players can move up, down, left and right...
-Player one (red) moves using the W, S, A and D keys.
-Player two (blue) moves using the I, K, J and L keys.
+Player Red moves using the W, S, A and D keys.
+Player Blue moves using the I, K, J and L keys.
 
-
+If the player touches a coin they earn the points of that coin.
+Each coin can have a value from 1 to 8.
+Coins with a value of 8 points have a special color.
+The game ends when the time is over.
 
 
 ### Getting Started
@@ -18,7 +21,7 @@ python3 -m pip install raylib
 ```
 After you've installed the required libraries, open a terminal and browse to the project's root folder. Start the program by running the following command.```
 
-python3 snake 
+python3 coin-race 
 ```
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the 
 project folder. Select the main module inside the hunter folder and click the "run" icon.
@@ -28,7 +31,7 @@ project folder. Select the main module inside the hunter folder and click the "r
 The project files and folders are organized as follows:
 ```
 root                    (project root folder)
-+-- snake               (source code for game)
++-- coin-race           (source code for game)
   +-- game              (specific game classes)
   +-- __main__.py       (entry point for program)
 +-- README.md           (general info)
@@ -41,4 +44,7 @@ root                    (project root folder)
 
 ## Authors
 ---
-* TODO: Add your name and email here
+* Lewis (smi21061@byui.edu)
+* James (tho21065@byui.edu)
+* Johnathan (johnathanruiz@gmail.com)
+* Monica (monica.barrerach@gmail.com)

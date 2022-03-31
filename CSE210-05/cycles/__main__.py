@@ -26,7 +26,7 @@ def main():
     cast.add_actor("cycle2", Cycle(constants.BLUE, 5 * constants.CELL_SIZE))
     cast.add_actor("score1", Score('Player Red', Point(0,0)))
     cast.add_actor("score2", Score('Player Blue', Point(765,0)))
-    cast.add_actor("timer", Timer(Point(430,0), minutes  = 2))
+    cast.add_actor("timer", Timer(Point(430,0), 1, 30))
    
     # start the game
     keyboard_service = KeyboardService()

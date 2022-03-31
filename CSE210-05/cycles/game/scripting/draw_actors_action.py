@@ -43,7 +43,7 @@ class DrawActorsAction(Action):
         self._video_service.draw_actors(segments2)
         self._video_service.draw_actor(score1)
         self._video_service.draw_actor(score2)
-        self._video_service.draw_actor(timer)
+        self._video_service.draw_actor(timer, True)
         self._video_service.draw_actors(messages, True)
         self._video_service.draw_actors(winner, True)
         self._video_service.flush_buffer()

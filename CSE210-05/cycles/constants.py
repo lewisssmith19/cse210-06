@@ -16,8 +16,13 @@ YELLOW = Color(255, 255, 0)
 GREEN = Color(0, 255, 0)
 BLUE = Color(9, 61, 251)
 
+# For the RGB effect, multiple of 255
 RAINBOW_R = 51
+
+# Symbols and colors for the coins
 COIN_SYMBOL = "$"
 COIN_COLOR = GREEN
 SPECIAL_COIN_SYMBOL = "@"
+
+# Amount of "tics" equivalent to one second
 TICS = 14

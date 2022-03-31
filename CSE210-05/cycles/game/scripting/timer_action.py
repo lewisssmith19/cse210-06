@@ -27,6 +27,7 @@ class TimerAction(Action):
             self._set_text(cast)
 
     def _add_temp(self, cast):
+        """ This is a temporary actions that help us to account the time (like a tic)"""
         self._temp += 1
 
         if self._temp == constants.TICS:
@@ -34,7 +35,7 @@ class TimerAction(Action):
             self._temp = 0
 
     def _compare_time(self, cast):
-
+        # Converts a minute to 60 seconds
         if self._seconds == 0 and self._minutes > 0:
             self._seconds = 60
             self._minutes -= 1
@@ -48,7 +49,9 @@ class TimerAction(Action):
             self._active = False
 
     def _set_text(self, cast):
-        
+        """
+        Set the text of the counter in a format MM:SS
+        """
         timer = cast.get_first_actor("timer")
 
         text = f"{self._minutes:02d}:{self._seconds:02d}"

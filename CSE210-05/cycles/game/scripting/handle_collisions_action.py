@@ -49,20 +49,24 @@ class HandleCollisionsAction(Action):
 
         if head1.get_position().equals(coin.get_position()):
             points = coin.get_points()
+            # Avoids collition in Game Over
             if not coin._lock:
                 score1.add_points(points)
                 coin.reset()
 
         if head2.get_position().equals(coin.get_position()):
             points = coin.get_points()
+            # Avoids collition in Game Over
             if not coin._lock:
                 score2.add_points(points)
                 coin.reset()
 
     def _score_comparision(self, cast):
+        # Players objects
         player1 = cast.get_first_actor("score1")
         player2 = cast.get_first_actor("score2")
 
+        # Players scores
         score1 = player1.get_points()
         score2 = player2.get_points()
 
@@ -73,7 +77,6 @@ class HandleCollisionsAction(Action):
             self._winner = player2._name
             return "cycle2"
         else:
-            self._winner = "It's a tie"
             return ""
 
     def _handle_addition_segments(self, cast):
@@ -127,7 +130,7 @@ class HandleCollisionsAction(Action):
                 score1.add_points(1)
         
     def _handle_game_over(self, cast):
-        """Shows the 'game over' message and turns the snake and food white if the game is over.
+        """Shows the 'game over' message and the winner if the game is over.
         
         Args:
             cast (Cast): The cast of Actors in the game.
@@ -135,6 +138,7 @@ class HandleCollisionsAction(Action):
 
         timer = cast.get_first_actor("timer")
 
+        # If timer is over
         if not timer._active:
             coin = cast.get_first_actor("coin")
             coin.lock()
@@ -157,7 +161,7 @@ class HandleCollisionsAction(Action):
             else:
                 winner_actor = cast.get_first_actor(winner_group)
                 winner.set_color(winner_actor.get_color())
-                winner.set_text(f"{self._winner} Wins")
+                winner.set_text(f"{self._winner} Wins!")
             
             winner.set_position(position2)
             cast.add_actor("message2", winner)

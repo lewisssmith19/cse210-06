@@ -15,3 +15,4 @@ RED = Color(255, 0, 0)
 YELLOW = Color(255, 255, 0)
 GREEN = Color(0, 255, 0)
 BLUE = Color(9, 61, 251)
+RAINBOW_R = 51

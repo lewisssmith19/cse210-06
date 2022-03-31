@@ -17,7 +17,7 @@ class Food(Actor):
         "Constructs a new Food."
         super().__init__()
         self._points = 0
-        self.set_text("$$")
+        self.set_text("$")
         self.set_color(constants.GREEN)
         self.reset()
         
@@ -37,3 +37,22 @@ class Food(Actor):
             points (int): The points the food is worth.
         """
         return self._points
+
+    def set_random_velocity(self):
+        """Updates the velocity to the given one.
+        
+        Args:
+            velocity (Point): The given velocity.
+        """
+        i = random.randint(0 , 3)
+
+        if i == 0:
+            self._velocity = Point(-15, 0)
+        elif i == 1:
+            self._velocity = Point(15, 0)
+        elif i == 2:
+            self._velocity = Point(0, -15)
+        elif i == 3:
+            self._velocity = Point(0, 15)
+        else:
+            self.set_velocity = Point(0, 0)

@@ -49,7 +49,7 @@ class Cycle(Actor):
             segment = Actor()
             segment.set_position(position)
             segment.set_velocity(velocity)
-            segment.set_text("")
+            segment.set_text("-")
             segment.set_color(self._color)
             self._segments.append(segment)
 
@@ -63,7 +63,8 @@ class Cycle(Actor):
         for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
             velocity = Point(1 * constants.CELL_SIZE, 0) 
-            text = "[(o)]" if i == 0 else ""
+            text = "[(o)]" if i == 0 else "-"
+            #text = "[(o)]" if i == 0 else "-"
 
             segment = Actor()
             segment.set_position(position)

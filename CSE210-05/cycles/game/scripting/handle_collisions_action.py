@@ -18,6 +18,7 @@ class HandleCollisionsAction(Action):
     def __init__(self):
         """Constructs a new HandleCollisionsAction."""
         self._is_game_over = False
+        self._counter = 0
 
     def execute(self, cast, script):
         """Executes the handle collisions action.
@@ -27,9 +28,33 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            self._handle_segment_collision(cast)
-            self._handle_addition_segments(cast)
+            self._handle_food_collision(cast)
+            self._handle_rainbow_color(cast)
             self._handle_game_over(cast)
+
+    def _handle_food_collision(self, cast):
+        """Updates the score nd moves the food if the snake collides with the food.
+        
+        Args:
+            cast (Cast): The cast of Actors in the game.
+        """
+        score1 = cast.get_first_actor("score1")
+        score2 = cast.get_first_actor("score2")
+        coin = cast.get_first_actor("coin")
+        cycle1 = cast.get_first_actor("cycle1")
+        cycle2 = cast.get_first_actor("cycle2")
+        head1 = cycle1.get_head()
+        head2 = cycle2.get_head()
+
+        if head1.get_position().equals(coin.get_position()):
+            points = coin.get_points()
+            score1.add_points(points)
+            coin.reset()
+
+        if head2.get_position().equals(coin.get_position()):
+            points = coin.get_points()
+            score2.add_points(points)
+            coin.reset()
 
     def _handle_addition_segments(self, cast):
         """Updates the snake and adds 
@@ -106,3 +131,21 @@ class HandleCollisionsAction(Action):
                 segment.set_color(constants.WHITE)
             for segment in segments2:
                 segment.set_color(constants.WHITE)
+
+    def _handle_rainbow_color(self, cast):
+        
+        coin = cast.get_first_actor("coin")
+        if coin.get_points() == 8:
+            coin.set_text("@")
+            coin.set_rainbow_color()
+            if self._counter % 10 == 0:
+                coin.set_random_velocity()
+            else:
+                coin.reset_velocity()
+            self._counter += 1
+            #print(self._counter)
+            
+        else:
+            coin.set_text("O")
+            coin.reset_velocity()
+            coin.set_color(constants.YELLOW)

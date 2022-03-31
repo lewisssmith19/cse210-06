@@ -116,3 +116,32 @@ class Actor:
             velocity (Point): The given velocity.
         """
         self._velocity = velocity
+
+    def set_rainbow_color(self):
+        color = self.get_color().to_tuple()
+        red = color[0]
+        green = color[1]
+        blue = color[2]
+        alpha = color[3]
+
+        if red == 255 and green == 0 and (blue >= 0 and blue < 255):
+            blue += constants.RAINBOW_R
+        elif (red > 0 and red <= 255) and green == 0 and blue == 255:
+            red -= constants.RAINBOW_R
+        elif red == 0 and (green >= 0 and green < 255) and blue == 255:
+            green += constants.RAINBOW_R
+        elif red == 0 and green == 255 and (blue > 0 and blue <= 255):
+            blue -= constants.RAINBOW_R
+        elif (red >= 0 and red < 255) and green == 255 and blue == 0:
+            red += constants.RAINBOW_R
+        elif red == 255 and (green > 0 and green <= 255) and blue == 0:
+            green -= constants.RAINBOW_R
+
+        self.set_color(Color(red, green, blue))
+
+    def reset_velocity(self):
+        '''
+        Set velocity to 0
+        '''
+
+        self._velocity = Point(0, 0)

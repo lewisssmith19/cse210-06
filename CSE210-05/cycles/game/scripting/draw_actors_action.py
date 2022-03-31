@@ -28,7 +28,7 @@ class DrawActorsAction(Action):
         """
         score1 = cast.get_first_actor("score1")
         score2 = cast.get_first_actor("score2")
-        food = cast.get_first_actor("foods")
+        food = cast.get_first_actor("coin")
         cycle1 = cast.get_first_actor("cycle1")
         cycle2 = cast.get_first_actor("cycle2") # --------------
         segments = cycle1.get_segments()

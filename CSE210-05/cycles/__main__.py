@@ -19,11 +19,11 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("foods", Food())
+    cast.add_actor("coin", Food())
     cast.add_actor("cycle1", Cycle(constants.RED, -5 * constants.CELL_SIZE))
     cast.add_actor("cycle2", Cycle(constants.BLUE, 5 * constants.CELL_SIZE))
-    cast.add_actor("score1", Score('Player 1', Point(0,0)))
-    cast.add_actor("score2", Score('Player 2', Point(765,0)))
+    cast.add_actor("score1", Score('Player Red', Point(0,0)))
+    cast.add_actor("score2", Score('Player Blue', Point(765,0)))
    
     # start the game
     keyboard_service = KeyboardService()
